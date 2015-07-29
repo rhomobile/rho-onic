@@ -1,0 +1,34 @@
+#sdk: "/Users/robgalvin/.rvm/scripts/gems/ruby-1.9.3-p551/gems/rhodes-5.1.1"
+sdkversion: "5.1.0"
+name: "RhoIonic-StarterBlank"
+version: 1.0
+vendor: "rhomobile"
+build: "debug"
+applog: "rholog.txt"
+iphone:
+  configuration: "Release"
+  sdk: "iphonesimulator8.2"
+  provisionprofile: 
+  codesignidentity: "iPhone Developer"
+  entitlements: 
+  BundleIdentifier: "com.rhomobile.rhoionic"
+  BundleURLScheme: "rhoionic"
+  production:
+    ipa_itunesartwork_image: "./production/iTunesArtwork.png"
+wp8:
+  productid: "0b60c380-1756-0133-aa34-2c87a3057736"
+android:
+#manifest_template: 'AndroidManifest.erb'
+  version: "2.3.3"
+# Note: in order to simplify debugging only app messages and system channels with priority informative and higher, and any errors are enabled by default
+  logcatFilter: "APP:I StrictMode:I DEBUG:I *:E"
+  android_title: 0
+wm: 
+win32:
+#sdk: "MC3000c50b (ARMV4I)"
+#sdk: "Windows Mobile 6.5.3 Professional DTK (ARMV4I)"
+  deployqt: 1
+  deploymsvc: 1
+rhobundle:
+  exclude_items:
+    - thumb.db

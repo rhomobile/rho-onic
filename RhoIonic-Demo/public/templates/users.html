@@ -1,0 +1,12 @@
+<ion-view view-title="Users">
+  <ion-content>
+  	<ion-spinner ng-if="loading"></ion-spinner>
+    <ion-list>
+      <ion-item collection-repeat="user in users" class="item item-avatar">
+	      <img src="{{user.user.picture.thumbnail}}">
+	      <h2>{{user.user.name.first | uppercase}} {{user.user.name.last | uppercase}}</h2>
+	      <p>{{user.user.location.city | capitalize}},{{user.user.location.state | capitalize}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

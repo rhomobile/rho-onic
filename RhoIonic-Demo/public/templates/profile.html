@@ -1,0 +1,18 @@
+<ion-view view-title="Profile">
+  <ion-content>
+	<div class="list card">
+
+
+	  <div class="item item-image" ng-click="takePicture()">
+		<img src="{{dataUriModel}}">
+	  </div>
+
+
+	</div>  
+    <div class="list" ng-if="Rho.Barcode">
+    	<div class="item">
+    		<button class="button button-full button-positive icon-left ion-ios-barcode-outline" ng-click="scanBarcode()">{{barcode}}</button>
+    	</div>
+    </div>
+  </ion-content>
+</ion-view>

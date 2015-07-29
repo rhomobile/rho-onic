@@ -1,0 +1,18 @@
+<ion-view view-title="DatePicker">
+  <ion-content>
+	<div class="list card">
+
+
+	  <div class="item item-image" ng-click="takePicture()">
+		<img src="{{dataUriModel}}">
+	  </div>
+
+
+	</div>  
+    <div>
+	    <ionic-datepicker idate="currentDate" disablepreviousdates="true"  disablefuturedates="false" callback="datePickerCallback" disableddates="disabledDates" title="title" mondayfirst="true">
+		    <button class="button button-block button-positive"> {{ currentDate | date:'dd - MMMM - yyyy' }} </button>
+		</ionic-datepicker>
+    </div>
+  </ion-content>
+</ion-view>

@@ -50,19 +50,6 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-datepicker'])
         }
 
         return q.promise;
-      },
-
-      encode: function (type, data) {
-        var q = $q.defer();
-        type = type || "TEXT_TYPE";
-
-        cordova.plugins.barcodeScanner.encode(type, data, function (result) {
-          q.resolve(result);
-        }, function (err) {
-          q.reject(err);
-        });
-
-        return q.promise;
       }
     };
   }])

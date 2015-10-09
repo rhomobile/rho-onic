@@ -1,0 +1,58 @@
+<ion-view view-title="Tube, Overground, TfL Rail & DLR">
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="getStatus()">
+    </ion-refresher>    
+    <ion-list>
+      <div class="item">
+        <div class="button-bar">
+          <a class="button" ng-class="dateRange.selected == 'today' ? 'button-positive' : 'button-light'" ng-click="setRange('today')">Today</a>
+          <a class="button"  ng-class="dateRange.selected == 'tomorrow' ? 'button-positive' : 'button-light'" ng-click="setRange('tomorrow')">Tomorrow</a>
+          <a class="button"  ng-class="dateRange.selected == 'weekend' ? 'button-positive' : 'button-light'"  ng-click="setRange('weekend')">Weekend</a>
+        </div>
+      </div>
+      <div class="item">
+        <ion-spinner ng-if="isLoading"></ion-spinner>
+      </div>
+      <ion-item ng-repeat="tube in tubes"  class="item item-icon-left" ng-if="!isLoading" ng-click="showStatus($index)">
+        
+        <i class="icon ion-android-train" style="background-color:{{tflStyle[tube.id].color}};color:white"></i>
+        {{tube.name}}
+        <span ng-class="tube.lineStatuses[0].statusSeverityDescription !='Good Service' ? 'badge badge-assertive' : 'badge badge-balanced'"
+        	ngfx-pulse="tube.lineStatuses[0].statusSeverityDescription !='Good Service'" ngfx-infinite>
+        	{{tube.lineStatuses[0].statusSeverityDescription}}
+        </span>
+        <ion-option-button class="button-positive"
+                       ng-click="getArrivals($index)">
+          <i class="icon ion-clock"></i> 
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+
+
+<script id="status-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar ng-class="tubes[selectedTube].lineStatuses[0].statusSeverityDescription !='Good Service' ? 'bar bar-header bar-assertive' : 'bar bar-header bar-balanced'">
+      <h1 class="title"><i class="icon ion-android-train" ></i> {{tubes[selectedTube].name}} {{dateRange.selected}}</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="card" ng-repeat="status in tubes[selectedTube].lineStatuses">
+          <div class="item item-divider">
+            {{status.statusSeverityDescription}}
+          </div>
+          <div class="item item-text-wrap" ng-if="status.disruption">
+            {{status.disruption.description}}
+          </div>
+          <div class="item item-divider" ng-if="status.validityPeriods">
+            {{status.validityPeriods[0].fromDate | date:'MMM dd HH:mm'}} -             
+            {{status.validityPeriods[0].toDate | date:'MMM dd  HH:mm'}}
+
+          </div>
+        </div>
+      <button class="button button-full button-outline button-positive" ng-click="closeModal()">Done</button>
+    </ion-content>
+  </ion-modal-view>
+</script>

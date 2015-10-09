@@ -1,0 +1,29 @@
+<ion-view view-title="{{lineName}}">
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="getArrivals()">
+    </ion-refresher>    
+
+	  <div class="item">
+	    <ion-spinner ng-if="isLoading"></ion-spinner>
+	  </div>
+    <div class="card" collection-repeat="arrival in arrivals">
+      <div class="item item-divider positive">
+        {{arrival.stationName}}
+      </div>
+      <div class="item item-text-wrap item-icon-left" ng-if="$index==0">
+        <i class="icon ion-location"></i>
+        {{arrival.currentLocation}}
+      </div>
+      <div class="item item-text-wrap item-icon-left" >
+        <i class="icon ion-drag"></i>
+        {{arrival.platformName}}
+      </div>
+      <div class="item item-text-wrap item-icon-left" >
+        <i class="icon ion-clock"></i>{{arrival.expectedArrival | date:'MMM dd HH:mm'}}             
+
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
